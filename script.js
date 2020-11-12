@@ -1,6 +1,9 @@
 const resetButton = document.getElementById("reset-button");
 const gridContainer = document.getElementById("grid-container");
 const interval = 4;
+const blackButton = document.getElementById("black-button");
+const colorButton = document.getElementById("rainbow-button");
+let isBLack = true;
 
 resetButton.addEventListener("click", resetSketchpad);
 
@@ -17,11 +20,22 @@ let gridCell = document.querySelectorAll(".grid-cell");
 
 gridCell.forEach(cell => {
   cell.addEventListener("mouseover", e => {
-    makeDarker(e);
-    //setRandomColor(e);
+    if (isBLack) {
+      makeDarker(e);  
+    } else {
+      setRandomColor(e);
+    }
   })
 })
-    
+
+
+colorButton.addEventListener("click",() => {
+  isBLack = false;
+})
+
+blackButton.addEventListener("click", () => {
+  isBLack = true;
+})
 
 
 function makeDarker(event) {
@@ -85,8 +99,11 @@ function resetSketchpad() {
     grid.dataset.key = i;
     gridContainer.append(grid);
     grid.addEventListener("mouseover", e => {
-      makeDarker(e);
-      //setRandomColor(e);
+      if (isBLack) {
+        makeDarker(e);  
+      } else {
+        setRandomColor(e);
+      }
     })
   }
   gridContainer.style.cssText = `grid-template: repeat(${newInterval}, 1fr) / repeat(${newInterval}, 1fr);`
