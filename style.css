@@ -14,6 +14,7 @@
 h1 {
   text-align: center;
   font-size: 80px;
+  font-family: 'Lobster', cursive;
 }
 
 main {
@@ -31,4 +32,22 @@ main {
   padding: 10px;
   margin: 30px;
   margin-top: -10px;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+  border-radius: 10%;
+}
+
+#black-button {
+  background: rgb(242, 242, 244);
+  background: linear-gradient(90deg, rgba(242, 242, 244, 1) 0%, rgba(3, 0, 9, 0.7231267507002801) 100%, rgba(238, 238, 239, 1) 100%, rgba(9, 7, 42, 1) 100%, rgba(245, 245, 245, 1) 100%, rgba(0, 212, 255, 1) 100%);
+}
+
+#rainbow-button {
+  background: rgb(242, 110, 110);
+  background: linear-gradient(90deg, rgba(242, 110, 110, 1) 0%, rgba(236, 255, 0, 1) 20%, rgba(0, 255, 21, 1) 40%, rgba(0, 189, 255, 1) 60%, rgba(162, 0, 255, 1) 80%, rgba(255, 0, 56, 1) 100%);
+}
+
+#reset-button {
+  color: #ff0419;
+  background-color: #19ff04;
 }
