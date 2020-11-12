@@ -10,3 +10,25 @@
   border: 1px solid black;
   background-color: rgb(255, 255, 255);
 }
+
+h1 {
+  text-align: center;
+  font-size: 80px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#control-section {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons {
+  padding: 10px;
+  margin: 30px;
+  margin-top: -10px;
+}
