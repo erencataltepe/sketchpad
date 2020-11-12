@@ -15,7 +15,8 @@ const gridCell = document.querySelectorAll(".grid-cell");
 
 gridCell.forEach(cell => {
   cell.addEventListener("mouseover", e => {
-    makeDarker(e);
+    //makeDarker(e);
+    setRandomColor(e);
   })
 })
     
@@ -32,10 +33,29 @@ function makeDarker(event) {
 }
 
 function setRandomColor(event) {
+  
   const cell = event.target;
-  const newRed = Math.floor(Math.random() * 256);
-  const newGreen = Math.floor(Math.random() * 256);
-  const newBlue = Math.floor(Math.random() * 256);
+  const cellCurrentBackgroundColor = cell.style.backgroundColor;
+// rgb(256,256,256) nedense javascriptle get etmek istediğimbde boş dönüyor. Bundan
+  //dolayı burada background color boş ise düz beyazdır diyip random renk atıyorum. 
+  if (cellCurrentBackgroundColor == "") {
+    
+    const newRed = Math.floor(Math.random() * 256);
+    const newGreen = Math.floor(Math.random() * 256);
+    const newBlue = Math.floor(Math.random() * 256);
+    
+    cell.style.backgroundColor = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
+  
+  } else {
+    
+    const currentRGBColors = getRGB(cellCurrentBackgroundColor);
+    const newRed = currentRGBColors.red * 0.9;
+    const newGreen = currentRGBColors.green * 0.9;
+    const newBlue = currentRGBColors.blue * 0.9;
+
+    cell.style.backgroundColor = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
+  
+  }
 }
 
 //Bu fonksiyon RGB color'ı extract ediyor.
@@ -48,6 +68,3 @@ function getRGB(str){
   } : {};
 }
 
-const style = getComputedStyle(gridContainer);
-console.log(style.backgroundColor);
-console.log(getRGB(style.backgroundColor));
