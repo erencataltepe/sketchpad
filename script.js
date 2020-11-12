@@ -13,7 +13,7 @@ for (let i = 0; i < interval * interval; i++) {
   gridContainer.append(grid);
 }
 
-const gridCell = document.querySelectorAll(".grid-cell");
+let gridCell = document.querySelectorAll(".grid-cell");
 
 gridCell.forEach(cell => {
   cell.addEventListener("mouseover", e => {
@@ -71,11 +71,11 @@ function getRGB(str){
 }
 
 function resetSketchpad() {
-  const newInterval = getNewSketchSize();
+  let newInterval = getNewSketchSize();
   //Mevcut cell'leri siliyorum.
-  for (let i = 0; i < interval * interval; i++) {
-    let cell = document.querySelector(".grid-cell");
-    gridContainer.removeChild(cell);
+  let cells = document.getElementsByClassName("grid-cell");
+  while(cells[0]) {
+    cells[0].parentNode.removeChild(cells[0]);
   }
 
   //Yeni interval ile yeni cell'leri dom'a ekliyorum.
@@ -84,12 +84,17 @@ function resetSketchpad() {
     grid.classList.add("grid-cell");
     grid.dataset.key = i;
     gridContainer.append(grid);
+    grid.addEventListener("mouseover", e => {
+      makeDarker(e);
+      //setRandomColor(e);
+    })
   }
   gridContainer.style.cssText = `grid-template: repeat(${newInterval}, 1fr) / repeat(${newInterval}, 1fr);`
+  
 }
 
 function getNewSketchSize() {
-  const newInterval = prompt("Give square count per side: ");
+  let newInterval = prompt("Give square count per side: ");
   while(newInterval > 100) {
     alert("You can not give a number more than 100. Please try again.")
     newInterval = prompt("Give square count per side: ");
